@@ -34,6 +34,10 @@ def eliminarEstudiante(id):
     json=miControladorEstudiante.delete(id)
     return jsonify(json)
 
+@app.route("/",methods=['GET'])
+def home():
+    return "Server running : "+"http://"+dataConfig["url-backend"]+":" + str(dataConfig["port"])
+
 def loadFileConfig():
     with open('config.json') as f:
         data = json.load(f)
@@ -45,3 +49,4 @@ if __name__=='__main__':
     dataConfig = loadFileConfig()
     print("Server running : "+"http://"+dataConfig["url-backend"]+":" + str(dataConfig["port"]))
     serve(app,host=dataConfig["url-backend"],port=dataConfig["port"])
+
